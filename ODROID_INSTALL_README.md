@@ -13,12 +13,14 @@
 ### 3. 부팅시 VNC 서버를 자동 실행
 * sudo crontab -e (일반 권한 crontab 은 부팅 불가)
 * 다음을 추가
-  * @reboot sudo nohup x11vnc -display :0 -auth guess 2>&1 | logger -t vncsh
+  * @reboot sudo nohup x11vnc -reopen -forever -display :0 -auth guess 2>&1 | logger -t vncsh
   * @reboot
     * 부팅시 시작
   * -display :0 
     * 0번 포트에 VNC 서버 연결
-  * -auth guess 
+  * -reopen -forever
+    * 1번 접속이 끊겨도 서버 지속, 재접속 허용
+  * -auth guess
     * Xauthority 파일 위치를 서버가 추정합니다.
     * -auth /home/$user/.Xauthority 같이 지정 가능
   * 2>&1 | logger -t vncsh

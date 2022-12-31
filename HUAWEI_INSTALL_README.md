@@ -24,8 +24,12 @@
 * sudo apt install ifmetric
 * route -n (네트워크 연결 정보 조회)
   * 만일 Iface 의 eth(LTE 모뎀) 네트워크의 Metric 이 wlan(서버 랜선) 의 Metric 보다 낮을 경우 LTE 네트워크가 우선됩니다.
-* sudo ifmetric wlan0 50
-  * wlan0 의 Metric 수치를 낮춰 우선순위를 높힙니다.
+* nmcli connection (현제 연결 정보를 조회합니다)
+* nmcli connection modify SK_WiFiGIGA1E18_5G ipv4.route-metric 50
+  * SK_WiFiGIGA1E18_5G 는 위의 nmcli connection 에서 조회한 name 값입니다.
+* nmcli connection up SK_WiFiGIGA1E18_5G
+  * 적용합니다.
+
 
 ### 5. 네트워크 연결 확인
 * curl https://www.google.com --interface eth0 (LTE 모뎀을 통해 조회)
