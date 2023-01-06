@@ -8,9 +8,9 @@
 * adb devices
 
 ### 3. 핸드폰 자체를 HUAWEI 모듈 대신 proxy 로 사용할 경우
-* adb shell settings put global airplane_mode_on 1
+* adb shell cmd connectivity airplane-mode enable
   * 비행기 모드 on
-* adb shell settings put global airplane_mode_on 0
+* adb shell cmd connectivity airplane-mode disable
   * 비행기 모드 off
 * adb shell svc usb setFunctions rndis
   * usb 테더링 on

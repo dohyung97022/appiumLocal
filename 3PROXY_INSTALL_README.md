@@ -34,18 +34,37 @@
 * vim 3proxy.cfg
   * #! /usr/local/bin/3proxy
   * daemon
+    * 프록시 서버를 데몬으로 실행
   * nserver 8.8.8.8
-  * nscache 65536   (https://github.com/3proxy/3proxy/blob/6279e860861ba78bc0c3fd217a485c8e60380934/cfg/3proxy.cfg.sample)
+    * dns 를 구글로 지정
+  * nscache 65536
+    * dns 캐쉬 지정
   * timeouts 1 5 30 60 180 15 60
+    * 접속 방식마다 timeout 지정
   * users root:CL:pass
+    * 아이디 root, 비밀번호 pass 의 회원 지정
   * log /var/log/3proxy.log
+    * 로그 저장 위치 지정
   * rotate 30
+    * 마지막 로그 파일 30개만 유지
   * setgid 13
+    * linux 특수 권한 지정
   * setuid 13
+    * linux 특수 권한 지정
   * auth none
+    * 보안을 지정하는 방식
+    * none : user 확인을 하지 않습니다.
+    * strong : username 과 password 확인
+    * iponly : 허용한 ip 만 통과
   * allow root
+    * user 중 root 만 통과
   * proxy -p3128 -e192.168.1.100
+    * 포트 3128 에 ifconfig 192.168.1.100 의 inet 을 연결합니다.
+    * -e 옵션은 ifconfig 확인 후 해당 값으로 지정
   * flush
+    * 이전에 지정한 옵션들을 무효화합니다.
+* 참고
+  * https://github.com/3proxy/3proxy/blob/6279e860861ba78bc0c3fd217a485c8e60380934/cfg/3proxy.cfg.sample
 * vim startproxy.sh
   * 
 
