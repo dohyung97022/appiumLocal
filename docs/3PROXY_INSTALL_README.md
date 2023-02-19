@@ -65,8 +65,6 @@
     * 이전에 지정한 옵션들을 무효화합니다.
 * 참고
   * https://github.com/3proxy/3proxy/blob/6279e860861ba78bc0c3fd217a485c8e60380934/cfg/3proxy.cfg.sample
-* vim startproxy.sh
-  * 
 
 
 
@@ -85,5 +83,9 @@ sudo apt -y install git
 sudo git clone https://github.com/z3apa3a/3proxy   
 cd 3proxy    
 sudo sed -i "28i #define ANONYMOUS 1" src/proxy.h   
+sudo ln -s Makefile.Linux Makefile   
+sudo make   
+sudo make install   
+sudo systemctl is-enabled 3proxy.service   
 echo '# custom routes' | sudo tee -a /etc/iproute2/rt_tables   
 echo '1 gw1' | sudo tee -a /etc/iproute2/rt_tables   
