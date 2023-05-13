@@ -11,8 +11,35 @@
 * sudo apt install x11vnc (tightvncserver 불가)
 
 ### 3. 부팅시 VNC 서버를 자동 실행
-* sudo crontab -e (일반 권한 crontab 은 부팅 불가)
-* 다음을 추가
+* service 추가 방법
+  * sudo vim /etc/systemd/system/x11vnc.service
+    * 서비스 생성
+  * ```
+    [Unit]
+    Description=x11vnc
+    After=display-manager.service
+
+    [Service]
+    Type=simple
+    Environment=DISPLAY=:0
+    User=odroid
+    ExecStart=/usr/bin/x11vnc -loop -forever -bg -rfbport 5900 -display :0 -noxrecord -noxfixes -noxdamage -shared -norc -auth guess
+    Restart=always
+    RestartSec=1
+
+    [Install]
+    WantedBy=graphical.target
+    ```
+  * sudo systemctl enable x11vnc.service
+    * 서비스 등록
+  * sudo systemctl daemon-reload
+    * 서비스 재로드
+  * sudo systemctl start x11vnc.service
+    * 서비스 시작
+
+
+* crontab 방법
+  * sudo crontab -e (일반 권한 crontab 은 부팅 불가)
   * @reboot sudo nohup x11vnc -reopen -forever -display :0 -auth guess 2>&1 | logger -t vncsh
   * @reboot
     * 부팅시 시작
