@@ -11,6 +11,13 @@
 * sudo apt install x11vnc (tightvncserver 불가)
 
 ### 3. 부팅시 VNC 서버를 자동 실행
+* 부팅시 자동 로그인
+  * sudo vim /usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf
+  * ```
+    [SeatDefaults]
+    greeter-session=lightdm-gtk-greeter
+    autologin-user=odroid
+    ```
 * service 추가 방법
   * sudo vim /etc/systemd/system/x11vnc.service
     * 서비스 생성
@@ -36,8 +43,6 @@
     * 서비스 재로드
   * sudo systemctl start x11vnc.service
     * 서비스 시작
-
-
 * crontab 방법
   * sudo crontab -e (일반 권한 crontab 은 부팅 불가)
   * @reboot sudo nohup x11vnc -reopen -forever -display :0 -auth guess 2>&1 | logger -t vncsh
