@@ -10,3 +10,5 @@
 * sudo raspi-config
 * Interface Options
 * VNC Enable
+* 메뉴 -> 기본 설정 -> Raspberry Pi Configuration
+* headless resolution 설정
