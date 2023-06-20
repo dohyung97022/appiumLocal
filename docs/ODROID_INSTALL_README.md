@@ -61,6 +61,30 @@
     * 작동이 안될 경우 cat /var/log/syslog | grep vncsh 를 통해 확인
 
 ### 4. fan 작동 온도 조절 방법
-* /sys/class/thermal/thermal_zone0/trip_point_4_temp
-  * 단위는 mili-celsius 입니다.
-  * ex ) 35000 는 35도
+* 수동적용
+  * /sys/class/thermal/thermal_zone0/trip_point_4_temp
+    * 단위는 mili-celsius 입니다.
+    * ex ) 35000 는 35도
+* 영구적용
+  * /etc/rc.local
+    * ```
+      # Target temperature: 30°C, 50°C, 70°C
+      TRIP_POINT_0=30000
+      TRIP_POINT_1=50000
+      TRIP_POINT_2=70000
+   
+      echo $TRIP_POINT_0 > /sys/devices/virtual/thermal/thermal_zone0/trip_point_0_temp
+      echo $TRIP_POINT_0 > /sys/devices/virtual/thermal/thermal_zone1/trip_point_0_temp
+      echo $TRIP_POINT_0 > /sys/devices/virtual/thermal/thermal_zone2/trip_point_0_temp
+      echo $TRIP_POINT_0 > /sys/devices/virtual/thermal/thermal_zone3/trip_point_0_temp
+   
+      echo $TRIP_POINT_1 > /sys/devices/virtual/thermal/thermal_zone0/trip_point_1_temp
+      echo $TRIP_POINT_1 > /sys/devices/virtual/thermal/thermal_zone1/trip_point_1_temp
+      echo $TRIP_POINT_1 > /sys/devices/virtual/thermal/thermal_zone2/trip_point_1_temp
+      echo $TRIP_POINT_1 > /sys/devices/virtual/thermal/thermal_zone3/trip_point_1_temp
+   
+      echo $TRIP_POINT_2 > /sys/devices/virtual/thermal/thermal_zone0/trip_point_2_temp
+      echo $TRIP_POINT_2 > /sys/devices/virtual/thermal/thermal_zone1/trip_point_2_temp
+      echo $TRIP_POINT_2 > /sys/devices/virtual/thermal/thermal_zone2/trip_point_2_temp
+      echo $TRIP_POINT_2 > /sys/devices/virtual/thermal/thermal_zone3/trip_point_2_temp
+      ```
