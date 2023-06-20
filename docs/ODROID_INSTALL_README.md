@@ -59,3 +59,8 @@
     * stderr 를 stdout 와 병합
     * vim /var/log/syslog 안에 vncsh 이라는 명칭의 로그를 남깁니다.
     * 작동이 안될 경우 cat /var/log/syslog | grep vncsh 를 통해 확인
+
+### 4. fan 작동 온도 조절 방법
+* /sys/class/thermal/thermal_zone0/trip_point_4_temp
+  * 단위는 mili-celsius 입니다.
+  * ex ) 35000 는 35도
