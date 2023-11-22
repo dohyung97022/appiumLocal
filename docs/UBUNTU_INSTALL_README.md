@@ -14,7 +14,7 @@
 * sudo apt update
 * sudo apt install x11vnc
 * sudo ufw allow 5900
-* sudo vim /etc/gdm3/custom.config
+* sudo vim /etc/gdm3/custom.conf
   * WaylandEnable=false 를 주석 해제
 * sudo vim /etc/systemd/system/x11vnc.service
   * 서비스 생성
